@@ -33,8 +33,8 @@ export default function OrgSettings() {
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       const [settingsRes, deptRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/org/settings', config),
-        axios.get('http://localhost:5000/api/org/departments', config)
+        axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/org/settings`, config),
+        axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/org/departments`, config)
       ]);
 
       if (settingsRes.data) {
@@ -58,7 +58,7 @@ export default function OrgSettings() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5000/api/org/settings', settings, {
+      await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/org/settings`, settings, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage('Office rules & timings updated successfully!');
@@ -77,7 +77,7 @@ export default function OrgSettings() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/org/departments', {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/org/departments`, {
         name: newDeptName,
         description: newDeptDesc
       }, {

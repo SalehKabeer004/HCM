@@ -282,7 +282,7 @@ function Dashboard() {
         setLoadingData(true);
         const token = localStorage.getItem('token');
         if (token) {
-          const res = await axios.get('http://localhost:5000/api/leaves', {
+          const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/leaves`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setLeaves(res.data);

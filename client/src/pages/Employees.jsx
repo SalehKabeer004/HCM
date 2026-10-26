@@ -46,8 +46,8 @@ export default function Employees() {
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       const [empRes, deptRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/employees', config),
-        axios.get('http://localhost:5000/api/org/departments', config)
+        axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/employees`, config),
+        axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/org/departments`, config)
       ]);
 
       setEmployees(empRes.data);
@@ -68,7 +68,7 @@ export default function Employees() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/employees', formData, {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/employees`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

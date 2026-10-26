@@ -28,7 +28,7 @@ export default function AttendanceHistory() {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/attendance', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/attendance`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setRecords(res.data);
