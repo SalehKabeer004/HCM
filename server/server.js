@@ -8,6 +8,7 @@ const orgRoutes = require('./src/routes/orgRoutes');
 const employeeRoutes = require('./src/routes/employeeRoutes');
 const attendanceRoutes = require('./src/routes/attendanceRoutes');
 const leaveRoutes = require('./src/routes/leaveRoutes');
+const userRoutes = require('./src/routes/userRoutes');
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use('/api/org', orgRoutes);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/attendance', attendanceRoutes)
 app.use('/api/leaves', leaveRoutes)
+app.use('/api/users', userRoutes);
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'HCM Lite backend is running smoothly!' });

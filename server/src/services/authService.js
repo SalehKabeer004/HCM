@@ -106,14 +106,3 @@ exports.changePassword = async (userId, oldPassword, newPassword) => {
 
   return { message: 'Password updated successfully.' };
 };
-
-exports.fixAdminPassword = async () => {
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash('12345678', salt);
-  
-  await User.findOneAndUpdate(
-    { email: 'admin@hcm.com' },
-    { password: hashedPassword }
-  );
-  console.log('Admin password updated with correct bcrypt hash!');
-};
