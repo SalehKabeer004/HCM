@@ -14,30 +14,27 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Allowed Origins List
+// CORS configuration for Vercel preview/production & Localhost
 const allowedOrigins = [
-  'https://hcm-orpin-nu.vercel.app', // frontend Vercel URL
   'http://localhost:5173',
-  'http://localhost:5000',
-  'https://hcm-5jqh-rcpmd16t4-salehkabeerdev-7057s-projects.vercel.app/'
+  'http://localhost:3000',
+  'https://hcm-orpin-nu.vercel.app' // Aapka main frontend domain agar ho
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+    // Agar koi tool ya mobile app ho (no origin) ya agar domain .vercel.app se end hota ho
+    if (!origin || origin.endsWith('.vercel.app') || allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
     }
-    return callback(null, true);
+    return callback(new Error('Not allowed by CORS'), false);
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Pre-flight requests ko explicitly handle karein
+// OPTIONS preflight requests ke liye explicit handler
 app.options('*', cors());
 
 // Routes
