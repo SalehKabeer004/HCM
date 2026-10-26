@@ -47,7 +47,7 @@ export default function Leaves() {
 
   const fetchLeaves = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/leaves`, {
+      const res = await axios.get(`${import.meta.env.BACKEND_API_URL || 'http://localhost:5000'}/api/leaves`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setLeaves(res.data);
@@ -63,7 +63,7 @@ export default function Leaves() {
     setError('');
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/leaves`, formData, {
+      await axios.post(`${import.meta.env.BACKEND_API_URL || 'http://localhost:5000'}/api/leaves`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage('Leave request submitted successfully!');
@@ -78,7 +78,7 @@ export default function Leaves() {
 
   const handleStatusUpdate = async (id, status) => {
     try {
-      await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/leaves/${id}`, { status }, {
+      await axios.put(`${import.meta.env.BACKEND_API_URL || 'http://localhost:5000'}/api/leaves/${id}`, { status }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchLeaves();

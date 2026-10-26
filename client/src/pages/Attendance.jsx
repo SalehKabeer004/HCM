@@ -44,7 +44,7 @@ export default function Attendance() {
           const token = localStorage.getItem('token');
           const config = { headers: { Authorization: `Bearer ${token}` } };
 
-          const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/attendance/check-in`, {
+          const res = await axios.post(`${import.meta.env.BACKEND_API_URL || 'http://localhost:5000'}/api/attendance/check-in`, {
             lat: latitude,
             lng: longitude
           }, config);
