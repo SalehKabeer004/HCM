@@ -12,7 +12,7 @@ const leaveRoutes = require('./src/routes/leaveRoutes');
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 // CORS configuration for Vercel preview/production & Localhost
 const allowedOrigins = [
