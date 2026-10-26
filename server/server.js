@@ -18,7 +18,8 @@ app.use(cors());
 const allowedOrigins = [
   'https://hcm-orpin-nu.vercel.app', // frontend Vercel URL
   'http://localhost:5173',
-  'http://localhost:3000'
+  'http://localhost:5000',
+  'https://hcm-5jqh-rcpmd16t4-salehkabeerdev-7057s-projects.vercel.app/'
 ];
 
 app.use(cors({
