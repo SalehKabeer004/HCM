@@ -22,22 +22,6 @@ const allowedOrigins = [
   'https://hcm-orpin-nu.vercel.app' // Aapka main frontend domain agar ho
 ];
 
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     // Agar koi tool ya mobile app ho (no origin) ya agar domain .vercel.app se end hota ho
-//     if (!origin || origin.endsWith('.vercel.app') || allowedOrigins.indexOf(origin) !== -1) {
-//       return callback(null, true);
-//     }
-//     return callback(new Error('Not allowed by CORS'), false);
-//   },
-//   credentials: true,
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization']
-// }));
-
-// OPTIONS preflight requests ke liye explicit handler
-// app.options('*', cors());
-
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/org', orgRoutes);
